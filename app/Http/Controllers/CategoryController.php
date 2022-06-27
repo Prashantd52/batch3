@@ -61,9 +61,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
+        $category=Category::where('id',$id)->first();
+
+        return view('category.show',Compact('category'));
     }
 
     /**

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-title">
-                    <h3 class="ml-2">Category Index<a href="{{route('c.create')}}"  target="_blank" title="creat category">+</a><h3>
+                    <h3 class="ml-2">Tag Index<a href="{{route('c.create')}}"  target="_blank" title="creat tag">+</a><h3>
                 </div>
                 <div class="card-body">
                     <div class="table">
@@ -29,18 +29,18 @@
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach($categories as $category)
+                                @foreach($tags as $tag)
                                 <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->description}}</td>
+                                    <td>{{$tag->id}}</td>
+                                    <td>{{$tag->name}}</td>
+                                    <td>{{$tag->description}}</td>
                                     <td><div class="row">
-                                        <a class="btn btn-info" href="{{route('c.show',$category->id)}}" target="_blank">Show</a>&emsp;
-                                        <a  class="btn btn-primary"href="{{route('c.edit',$category->id)}}" target="_blank" title="edit category">edit</a>&emsp;
+                                        <a class="btn btn-info" href="{{route('c.show',$tag->id)}}" target="_blank">Show</a>&emsp;
+                                        <a  class="btn btn-primary"href="{{route('c.edit',$tag->id)}}" target="_blank" title="edit tag">edit</a>&emsp;
                                         <form action="{{Route('c.destroy')}}" method="post">
                                             @csrf()
                                             @method('delete')
-                                            <input type="hidden" name="id" value="{{$category->id}}">
+                                            <input type="hidden" name="id" value="{{$tag->id}}">
                                             <button  type="submit" class="btn btn-danger"> Delete</button>
                                         </form>
                                         </div>
