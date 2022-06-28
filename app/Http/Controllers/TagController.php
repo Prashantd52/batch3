@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TagController extends Controller
 {
@@ -28,6 +29,7 @@ class TagController extends Controller
     public function create()
     {
         //
+        return view('Tag.create');
     }
 
     /**
@@ -39,6 +41,14 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+        $tag= new Tag;
+        $tag->name=$request->name;
+        $tag->description=$request->description;
+        $tag->created_at=Carbon::now();
+        $tag->updated_at=Carbon::now();
+        $tag->save();
+
+        return redirect()->route('t.index');
     }
 
     /**
@@ -73,6 +83,13 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         //
+        $tag=Tag::where('id',$request->id)->first();
+        $tag->name=$request->name;
+        $tag->description=$request->description;
+
+        $tag->save();
+        
+        return redirect()->back();
     }
 
     /**

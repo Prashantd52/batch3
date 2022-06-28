@@ -27,6 +27,9 @@ Route::get('category/show/{id}','CategoryController@show')->name('c.show');
 
 //tag routs
 Route::get('tag/index','TagController@index')->name('t.index');
+Route::get('tag/create','TagController@create')->name('t.create');
+Route::post('tag/store','TagController@store')->name('t.store');
+Route::post('tag/update','TagController@update')->name('t.update');
 
 // Route::get('/',function(){
 
