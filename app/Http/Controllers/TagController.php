@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
         //
-        $tags=Tag::all();
+        $tags=Tag::get();
 
         return view('Tag.index',compact('tags'));
     }
@@ -41,6 +41,12 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+
+        $request->validate([
+            'name'=>'required|unique:tags,name',
+            'description'=> 'required|min:10|max:10'
+        ]);
+
         $tag= new Tag;
         $tag->name=$request->name;
         $tag->description=$request->description;
@@ -98,8 +104,27 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag,Request $request)
     {
         //
+        $tag=Tag::withTrashed()->find($request->id);
+
+        if($tag->deleted_at)
+        {
+            $tag->forceDelete();
+        }
+        else
+        {
+            $tag->delete();
+        }
+        
+        return redirect()->back();  //->route('t.index');
+    }
+
+    public function softdeleted_tags()
+    {
+        $tags=Tag::onlyTrashed()->get();
+
+        return view('Tag.index',compact('tags'));
     }
 }

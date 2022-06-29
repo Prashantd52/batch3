@@ -30,6 +30,9 @@ Route::get('tag/index','TagController@index')->name('t.index');
 Route::get('tag/create','TagController@create')->name('t.create');
 Route::post('tag/store','TagController@store')->name('t.store');
 Route::post('tag/update','TagController@update')->name('t.update');
+Route::delete('tag/delete','TagController@destroy')->name('t.destroy');
+
+Route::get('tag/softdeleted','TagController@softdeleted_tags')->name('t.softdeleted');
 
 // Route::get('/',function(){
 
