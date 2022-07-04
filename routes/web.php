@@ -34,6 +34,12 @@ Route::delete('tag/delete','TagController@destroy')->name('t.destroy');
 
 Route::get('tag/softdeleted','TagController@softdeleted_tags')->name('t.softdeleted');
 
+
+
+//blog Routes
+
+Route::resource('blog','BlogController');
+
 // Route::get('/',function(){
 
 // });   
