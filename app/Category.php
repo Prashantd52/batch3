@@ -9,4 +9,8 @@ class Category extends Model
     //
     // protected $table="";
     
+    public function blogs()
+    {
+        return $this->hasMany('App\Blog');
+    }
 }

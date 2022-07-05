@@ -16,7 +16,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories=Category::all();
+        // $categories=Category::with('blogs')->get();
+        $categories=Category::with('blogs')->paginate(6);
         // dd($categories);
         return view('category.index')->withCategories($categories);
     }

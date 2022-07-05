@@ -17,6 +17,8 @@ class BlogController extends Controller
     public function index()
     {
         //
+        $Blogs=Blog::with('categories')->get();
+        return view('blog.index',compact('Blogs'));
     }
 
     /**
@@ -28,6 +30,7 @@ class BlogController extends Controller
     {
         //
         $categories=Category::all();
+
         return view('blog.create',compact('categories')); 
     }
 
@@ -49,7 +52,7 @@ class BlogController extends Controller
         $blog->save();
 
         session()->flash('success','Blog Created Succesfully');
-        return redirect()->route('c.index');
+        return redirect()->route('blog.index');
     }
 
     /**

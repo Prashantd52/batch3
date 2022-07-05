@@ -31,6 +31,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Description</th>
+                                <th>Blogs</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -39,6 +40,12 @@
                                     <td>{{$category->id}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->description}}</td>
+                                    <td>
+                                        @foreach($category->blogs as $blog)
+
+                                        <span class="badge badge-info">{{$blog->title}}</span>
+                                        @endforeach
+                                    </td>
                                     <td><div class="row">
                                         <a class="btn btn-info" href="{{route('c.show',$category->id)}}" target="_blank">Show</a>&emsp;
                                         <a  class="btn btn-primary"href="{{route('c.edit',$category->id)}}" target="_blank" title="edit category">edit</a>&emsp;
@@ -54,6 +61,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{$categories->links()}}
                     </div>
                 </div>
             </div>
