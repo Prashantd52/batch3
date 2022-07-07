@@ -44,7 +44,7 @@ class TagController extends Controller
 
         $request->validate([
             'name'=>'required|unique:tags,name',
-            'description'=> 'required|min:10|max:10'
+            'description'=> 'required',
         ]);
 
         $tag= new Tag;

@@ -9,4 +9,9 @@ class Tag extends Model
 {
     //
     use Softdeletes;
+
+    public function blogs()
+    {
+        return $this->belongsToMany('App\Blog');
+    }
 }

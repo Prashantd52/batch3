@@ -79,6 +79,11 @@
                 </div>
             @endif
 
+            <div class="top-right links">
+               <a href="{{ route('blog.index')}}">Blogs</a>
+               <a href="{{ route('c.index') }}">Categories</a>
+               <a href="{{ route('t.index') }}">Tags</a>
+            </div>
             <div class="content">
                 <!-- <div class="title m-b-md">
                     Laravel

@@ -26,6 +26,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Blogs</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -34,6 +35,11 @@
                             <td>{{$tag->id}}</td>
                             <td>{{$tag->name}}</td>
                             <td>{{$tag->description}}</td>
+                            <td>
+                                @foreach($tag->blogs as $blog)
+                                <span class="badge badge-secondary">{{$blog->title}}</span>
+                                @endforeach
+                            </td>
                             <td><div class="row">
                                 @if($tag->deleted_at)
                                     <a  class="btn btn-warning" href="#"  title="restore tag">restore</a>&emsp;

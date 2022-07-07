@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::middleware(['auth'])->group(function(){
+    // Route::get('category_index','CategoryController@index')->name('c.index');
+});
+
 Route::get('category_create','CategoryController@create')->name('c.create');
 Route::post('category_store','CategoryController@store');
 Route::get('category_index','CategoryController@index')->name('c.index');
@@ -39,6 +44,7 @@ Route::get('tag/softdeleted','TagController@softdeleted_tags')->name('t.softdele
 //blog Routes
 
 Route::resource('blog','BlogController');
+// Route::resource('/blog','BlogController@index')->name('blog.index');
 
 // Route::get('/',function(){
 

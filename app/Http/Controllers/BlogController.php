@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Category;
+use App\Tag;
 use Session;
 use Illuminate\Http\Request;
+use App\Traits\CommonTrait;
 
 class BlogController extends Controller
 {
+    use CommonTrait;
     /**
      * Display a listing of the resource.
      *
@@ -30,8 +33,9 @@ class BlogController extends Controller
     {
         //
         $categories=Category::all();
+        $tags=Tag::all();
 
-        return view('blog.create',compact('categories')); 
+        return view('blog.create',compact('categories','tags')); 
     }
 
     /**
@@ -49,8 +53,13 @@ class BlogController extends Controller
         $blog->category_id=$request->category_id;
         $blog->description=$request->description;
 
+        if($request->file('image'))
+        {
+            $blog->media_path=$this->AddMedia($request->file('image'));
+        }
         $blog->save();
 
+        $blog->tags()->sync($request->tags);
         session()->flash('success','Blog Created Succesfully');
         return redirect()->route('blog.index');
     }

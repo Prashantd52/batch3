@@ -8,7 +8,7 @@ Blog
 <div class="container">
     <h3 class="ml-2"> Blog</h3>
     <div class="card">
-        <form action="{{route('blog.store')}}" method="post">
+        <form action="{{route('blog.store')}}" method="post" enctype="multipart/form-data">
             @csrf()
             @method('post')
             <div class="card-body">
@@ -28,12 +28,24 @@ Blog
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <b>Tags :</b>
+                        <select name="tags[]" multiple id="tag" class="form-control">
+                            @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <b>Add Media :</b>
+                        <input type="file" name="image" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-8">
                         <b>Description:</b>
                         <textarea class="form-control" name="description" id="description" rows="10" placeholder="Write Blog here" ></textarea>
                     </div>
-                </div>
-
                 <button type="submit" class="btn btn-secondary">Save</button>
             </div>
         </form>

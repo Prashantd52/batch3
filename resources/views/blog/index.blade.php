@@ -14,6 +14,7 @@
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Category</th>
+                                <th>Tags</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -23,6 +24,10 @@
                                     <td>{{$Blog->title}}</td>
                                     <td>{{$Blog->Description}}</td>
                                     <td>{{$Blog->categories->name}}</td>
+                                    <td>@foreach($Blog->tags as $tag)
+                                        <span class="badge badge-warning">{{$tag->name}}</span>
+                                        @endforeach
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
