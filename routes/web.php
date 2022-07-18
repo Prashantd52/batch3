@@ -44,8 +44,11 @@ Route::get('tag/softdeleted','TagController@softdeleted_tags')->name('t.softdele
 //blog Routes
 
 Route::resource('blog','BlogController');
+Route::get('blog/remove image/{id}','BlogController@remove_image');
 // Route::resource('/blog','BlogController@index')->name('blog.index');
 
 // Route::get('/',function(){
 
 // });   
+
+Route::resource('comment','CommentController');

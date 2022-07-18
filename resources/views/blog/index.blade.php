@@ -28,6 +28,7 @@
                                         <span class="badge badge-warning">{{$tag->name}}</span>
                                         @endforeach
                                     </td>
+                                    <td><a href="{{route('blog.show',$Blog->id)}}" class="btn btn-primary">view</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

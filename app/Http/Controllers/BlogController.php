@@ -47,7 +47,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
-
+        // dd($request);
         $blog= new Blog;
         $blog->title=$request->title;
         $blog->category_id=$request->category_id;
@@ -70,9 +70,12 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($id)
     {
         //
+        $blog=Blog::with(['comments','tags'])->find($id);
+        // dd($blog);
+        return view('blog.show',compact('blog'));
     }
 
     /**
@@ -107,5 +110,21 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+    }
+
+    public function remove_image($id)
+    {
+        // dd($id);
+        $blog=Blog::find($id);
+
+        $imagePath=public_path($blog->media_path);
+
+        unlink($imagePath);
+
+        $blog->media_path="";
+        $blog->save();
+
+
+        return redirect()->back()->with('warning','Image deleted');
     }
 }
