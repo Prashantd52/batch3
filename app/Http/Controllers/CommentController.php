@@ -56,6 +56,7 @@ class CommentController extends Controller
     public function show(Comment $comment)
     {
         //
+        // dd($comment);
     }
 
     /**
@@ -76,9 +77,29 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request,$commentID)
     {
         //
+        // dd($comment);
+        $existedComment=Comment::where('id',$commentID)->first();
+
+        if($existedComment)
+        {
+
+            $existedComment->comment=$request->comment;
+    
+            $existedComment->save();
+    
+            return ['status'=>"success",'message'=>"Comment Updated Successfully","data"=>$existedComment];
+        }
+        else
+        {
+            return ['status'=>"error",'message'=>"Comment Not found","data"=>null];
+        }
+
+
+
+
     }
 
     /**
@@ -90,5 +111,21 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+
+
+    public function delete_comment($id)
+    {
+        $comment=Comment::where('id',$id)->first();
+
+        if($comment)
+        {
+            $comment->delete();
+            return ['status'=>"success",'message'=>"Comment Deleted Successfully"];
+        }
+        else
+            return ['status'=>"error",'message'=>"Comment Not found"];
+
+        
     }
 }
